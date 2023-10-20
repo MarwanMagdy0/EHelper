@@ -19,6 +19,11 @@ class TrayThread(QThread):
         self.ui.activateWindow()
     
     def translate_clip(self):
+        clipboard = QApplication.clipboard()
+        text = clipboard.text()
+        self.translate_clip_obj.english_text.setText(text)
+        self.translate_clip_obj.arabic_text.setText("")
+        self.translate_clip_obj.save_button.setEnabled(False)
         self.translate_clip_obj.new_key = None
         self.translate_clip_obj.show()
 
@@ -29,7 +34,7 @@ class TrayThread(QThread):
         self.ui.close()
 
     def run(self):
-        image = Image.open("/home/marwan/Documents/Python_Projects/Qt/MyWe/wifi.png")
+        image = Image.open("ui/data/logo.png")
 
         # Create a menu item with the left-click event handler
         menu = (pystray.MenuItem("   show", self.on_left_click, default = True),
@@ -81,6 +86,11 @@ class MainUI(QMainWindow):
             self.listWidget_arabic.addItem(translate)
     
     def add_button_clicked(self):
+        clipboard = QApplication.clipboard()
+        text = clipboard.text()
+        self.translate_window.english_text.setText(text)
+        self.translate_window.save_button.setEnabled(False)
+        self.translate_window.arabic_text.setText("")
         self.translate_window.new_key = None
         self.translate_window.show()
     

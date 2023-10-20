@@ -15,6 +15,7 @@ class TranslatorThread(QThread):
 
 class TranslateUI(QDialog):
     save_button: QPushButton
+    translate_button: QPushButton
     english_text: QTextEdit
     arabic_text : QTextEdit
     new_word_is_added = pyqtSignal()
@@ -22,17 +23,21 @@ class TranslateUI(QDialog):
         super().__init__()
         loadUi("ui/translate_clipboard.ui", self)
         self.save_button.clicked.connect(self.save_and_exit_method)
-        self.english_text.textChanged.connect(self.translate_word)
+        self.translate_button.clicked.connect(self.translate_word_method)
         self.new_key = None
         self.translator_thread = TranslatorThread()
-        self.translator_thread.text_is_translated.connect(self.arabic_text.setText)
+        self.translator_thread.text_is_translated.connect(self.update_arabic)
     
-    def translate_word(self):
+    def translate_word_method(self):
+        self.save_button.setEnabled(False)
+        self.translate_button.setEnabled(False)
         self.translator_thread.text_to_translate = self.english_text.toPlainText()
-        if self.translator_thread.text_to_translate is not None:
-            self.translator_thread.terminate()
         self.translator_thread.start()
-
+    
+    def update_arabic(self, text):
+        self.arabic_text.setText(text)
+        self.save_button.setEnabled(True)
+        self.translate_button.setEnabled(True)
     def save_and_exit_method(self):
         data = json_file.read_data()
         if self.new_key is None:

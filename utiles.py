@@ -40,6 +40,7 @@ json_file = HandleJsonFiles("words.json")
 translator = Translator()
 
 
+
 def is_connected_to_internet():
     try:
         if requests.get('https://google.com').ok:
