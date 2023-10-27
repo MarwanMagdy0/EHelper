@@ -1,7 +1,11 @@
 from PIL import Image
 from translate_clip_ui import *
+from ask import *
 from utiles import *
 import pystray
+
+TIMER = 20 * 10 # min * 10
+
 class TrayThread(QThread):
     """
     This class is to open the second python file and get the internet output from it
@@ -31,10 +35,11 @@ class TrayThread(QThread):
         """
         this method closes the entire program
         """
+        self.translate_clip_obj.close()
         self.ui.close()
 
     def run(self):
-        image = Image.open("ui/data/logo.png")
+        image = Image.open(PATH + "ui/data/logo.png")
 
         # Create a menu item with the left-click event handler
         menu = (pystray.MenuItem("   show", self.on_left_click, default = True),
@@ -54,19 +59,21 @@ class MainUI(QMainWindow):
     add_button : QPushButton
     def __init__(self):
         super().__init__()
-        loadUi("ui/main.ui", self)
+        loadUi(PATH + "ui/main.ui", self)
         self.add_button.clicked.connect(self.add_button_clicked)
         self.init_translate_window()
         self.init_list_widget()
         self.init_tray_thread()
+        self.init_timers()
+        self.ask_ui = AskUI()
 
     def init_tray_thread(self):
         self.tray_thread  = TrayThread(self)
         self.tray_thread.start()
 
-
     def init_translate_window(self):
         self.translate_window = TranslateUI()
+        self.translate_window.run_alone = False
         self.translate_window.new_word_is_added.connect(self.load_json)
 
     def init_list_widget(self):
@@ -74,6 +81,15 @@ class MainUI(QMainWindow):
         self.listWidget_english.doubleClicked.connect(self.edit_index)
         self.listWidget_arabic.doubleClicked.connect(self.edit_index)
         self.load_json()
+
+    def init_timers(self):
+        self.ask_timer = QTimer()
+        self.ask_timer.timeout.connect(self.ask_question)  # Connect the timer's timeout signal to the update_label function
+        self.ask_timer.start(TIMER*1000)
+
+        self.notify_timer = QTimer()
+        self.notify_timer.timeout.connect(notify)  # Connect the timer's timeout signal to the update_label function
+        self.notify_timer.start((TIMER-0.01)*1000) 
 
     def load_json(self):
         self.listWidget_arabic.clear()
@@ -105,6 +121,18 @@ class MainUI(QMainWindow):
         self.translate_window.english_text.setText(english)
         self.translate_window.arabic_text.setText(arabic)
         self.translate_window.show()
+    
+    def ask_question(self):
+        self.ask_ui.get_word()
+        self.ask_ui.show()
+        self.ask_ui.activateWindow()
+    
+    def closeEvent(self, event):
+        if event.spontaneous():
+            self.hide()
+            event.ignore()
+        else:
+            event.accept()
 
 
 app = QApplication([])

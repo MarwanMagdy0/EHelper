@@ -1,10 +1,15 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QLabel, QTextEdit, QListWidget, QLineEdit, QDialog
 from PyQt5.QtCore import QThread, pyqtSignal, QModelIndex
 from googletrans import Translator
+from PyQt5.QtCore import QTimer
+from plyer import notification
 from PyQt5.uic import loadUi
 import requests
 import json
 import os
+
+PATH = os.path.dirname(os.path.realpath(__file__)) + "/"
+
 class HandleJsonFiles:
     def __init__(self, file_path, default = None):
         self.file_path = os.path.normpath(file_path)
@@ -35,10 +40,9 @@ class HandleJsonFiles:
     def keys(self):
         data = self.read_data()
         return data.keys()
-
+  
 json_file = HandleJsonFiles("words.json")
 translator = Translator()
-
 
 
 def is_connected_to_internet():
@@ -56,6 +60,15 @@ def translate_to_arabic(text):
     return ""
 
 
+def notify():
+    notification.notify(
+        title="new word in 10sec",
+        message=f"EHelper",
+        app_name='EHelper',
+        timeout=1
+    )
+
 if __name__ == "__main__":
     # print(json_file.read_data())
     print(translate_to_arabic("Hello, how are you?"))
+    notify()

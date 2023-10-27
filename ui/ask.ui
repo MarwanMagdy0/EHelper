@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>596</width>
+    <height>595</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Title</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">* {
+	background-color: #1e1e1e;
+	color: #ffffff;
+}
+QPushButton {
+	font: 63 20pt &quot;DejaVu Sans Mono&quot;;
+	background-color: #9a9ef9;
+	border: 1px solid #9a9ef9;
+	border-radius: 20px;
+	color: #FFFFFF;
+}
+QPushButton:hover {
+    border-radius:20px;
+	border: 1px solid #7070d0;
+	background-color: #7070d0;
+    color: white;
+}
+
+QPushButton:disabled {
+    background-color: gray;
+    color: white;
+}
+
+QPushButton:pressed {
+    
+	background-color: rgb(85, 0, 255);
+    color: white;
+}
+QHeaderView::section {
+ background-color: #303030;
+border:none;
+ }
+
+QScrollBar:vertical {
+        background-color: #333333;
+        width: 10px;
+    }
+    QScrollBar::handle:vertical {
+        background-color: #555555;
+        min-height: 20px;
+    }
+    QScrollBar::handle:vertical:hover {
+        background-color: #777777;
+    }
+    QScrollBar::add-line:vertical,
+    QScrollBar::sub-line:vertical {
+        background: none;
+    }
+    QScrollBar::add-page:vertical,
+    QScrollBar::sub-page:vertical {
+        background: none;
+    }</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="english_word">
+     <property name="styleSheet">
+      <string notr="true">font: 20pt &quot;DejaVu Sans&quot;;</string>
+     </property>
+     <property name="text">
+      <string>word</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QTextEdit" name="arabic_text">
+       <property name="styleSheet">
+        <string notr="true">font: 20pt &quot;DejaVu Sans&quot;;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="translated_label">
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 20pt &quot;DejaVu Sans&quot;;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPushButton" name="show_button">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>50</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>show</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="check_button">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>50</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>check</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

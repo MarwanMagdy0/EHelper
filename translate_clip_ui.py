@@ -21,12 +21,14 @@ class TranslateUI(QDialog):
     new_word_is_added = pyqtSignal()
     def __init__(self):
         super().__init__()
-        loadUi("ui/translate_clipboard.ui", self)
+        loadUi(PATH + "ui/translate_clipboard.ui", self)
+        self.save_button.setEnabled(False)
         self.save_button.clicked.connect(self.save_and_exit_method)
         self.translate_button.clicked.connect(self.translate_word_method)
         self.new_key = None
         self.translator_thread = TranslatorThread()
         self.translator_thread.text_is_translated.connect(self.update_arabic)
+        self.run_alone = True
     
     def translate_word_method(self):
         self.save_button.setEnabled(False)
@@ -39,19 +41,33 @@ class TranslateUI(QDialog):
         self.save_button.setEnabled(True)
         self.translate_button.setEnabled(True)
     def save_and_exit_method(self):
+        if self.arabic_text.toPlainText().strip() == "" or self.arabic_text.toPlainText().strip()==" ":
+            return
+        
         data = json_file.read_data()
         if self.new_key is None:
             self.new_key = len(data)
         data[str(self.new_key)] = {
             "english":self.english_text.toPlainText().strip(),
             "arabic":self.arabic_text.toPlainText().strip(), 
-            "word-displayed":False
+            "word-displayed":False,
+            "stop-asking": False
         }
         json_file.save_data(data)
         self.new_word_is_added.emit()
-        self.hide()
+        if self.run_alone:
+            self.close()
+        else:
+            self.hide()
         self.english_text.setText("")
         self.arabic_text.setText("")
+    
+    def closeEvent(self, event):
+        if event.spontaneous() and not self.run_alone:
+            self.hide()
+            event.ignore()
+        else:
+            event.accept()
 
 
 if __name__ == "__main__":

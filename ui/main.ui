@@ -96,6 +96,12 @@ QScrollBar:vertical {
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
+        <property name="verticalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
         <property name="alternatingRowColors">
          <bool>false</bool>
         </property>
@@ -115,7 +121,7 @@ QScrollBar:vertical {
          <enum>QListView::ListMode</enum>
         </property>
         <property name="wordWrap">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
       </item>
