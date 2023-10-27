@@ -41,7 +41,7 @@ class HandleJsonFiles:
         data = self.read_data()
         return data.keys()
   
-json_file = HandleJsonFiles("words.json")
+json_file = HandleJsonFiles(PATH + "words.json")
 translator = Translator()
 
 

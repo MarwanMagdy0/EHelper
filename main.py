@@ -30,6 +30,7 @@ class TrayThread(QThread):
         self.translate_clip_obj.save_button.setEnabled(False)
         self.translate_clip_obj.new_key = None
         self.translate_clip_obj.show()
+        self.translate_clip_obj.activateWindow()
 
     def on_right_click(self):
         """
@@ -123,10 +124,11 @@ class MainUI(QMainWindow):
         self.translate_window.show()
     
     def ask_question(self):
-        self.ask_ui.get_word()
-        self.ask_ui.show()
-        self.ask_ui.activateWindow()
-    
+        done = self.ask_ui.get_word()
+        if done:
+            self.ask_ui.show()
+            self.ask_ui.activateWindow()
+        
     def closeEvent(self, event):
         if event.spontaneous():
             self.hide()
@@ -137,5 +139,4 @@ class MainUI(QMainWindow):
 
 app = QApplication([])
 ui = MainUI()
-ui.show()
 app.exec_()

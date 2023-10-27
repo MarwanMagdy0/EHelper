@@ -17,7 +17,7 @@ class AskUI(QDialog):
     def get_word(self):
         data = json_file.read_data()
         if len(data) < 1:
-            return
+            return False
         self.translated_label.setText("")
         self.arabic_text.setText("")
         
@@ -33,6 +33,7 @@ class AskUI(QDialog):
                 data[key]["word-displayed"] = False
             json_file.save_data(data)
             self.get_word() # it will enter here only one time
+        return True
 
     def check_text(self):
         if self.arabic_text.toPlainText() == self.translated_word:
