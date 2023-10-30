@@ -4,7 +4,7 @@ from ask import *
 from utiles import *
 import pystray
 
-TIMER = 20 * 10 # min * 10
+TIMER = 20 * 60000 # min
 
 class TrayThread(QThread):
     """
@@ -43,9 +43,9 @@ class TrayThread(QThread):
         image = Image.open(PATH + "ui/data/logo.png")
 
         # Create a menu item with the left-click event handler
-        menu = (pystray.MenuItem("   show", self.on_left_click, default = True),
+        menu = (pystray.MenuItem("show", self.on_left_click, default = True),
                 pystray.MenuItem("trans-clip", self.translate_clip),
-                pystray.MenuItem("   exit", self.on_right_click))
+                pystray.MenuItem("exit", self.on_right_click))
 
         # Create the tray icon with the menu
         icon = pystray.Icon("tray_icon", image, "Tray Icon", menu)
@@ -86,11 +86,11 @@ class MainUI(QMainWindow):
     def init_timers(self):
         self.ask_timer = QTimer()
         self.ask_timer.timeout.connect(self.ask_question)  # Connect the timer's timeout signal to the update_label function
-        self.ask_timer.start(TIMER*1000)
+        self.ask_timer.start(TIMER)
 
-        self.notify_timer = QTimer()
-        self.notify_timer.timeout.connect(notify)  # Connect the timer's timeout signal to the update_label function
-        self.notify_timer.start((TIMER-0.01)*1000) 
+        # self.notify_timer = QTimer()
+        # self.notify_timer.timeout.connect(notify)  # Connect the timer's timeout signal to the update_label function
+        # self.notify_timer.start((TIMER-0.01)*1000) 
 
     def load_json(self):
         self.listWidget_arabic.clear()

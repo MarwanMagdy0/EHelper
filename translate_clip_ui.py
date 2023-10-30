@@ -68,6 +68,12 @@ class TranslateUI(QDialog):
             event.ignore()
         else:
             event.accept()
+    
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Escape:
+            self.hide()
+        else:
+            super().keyPressEvent(event)
 
 
 if __name__ == "__main__":

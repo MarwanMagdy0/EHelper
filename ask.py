@@ -45,7 +45,12 @@ class AskUI(QDialog):
 
     def show_text(self):
         self.translated_label.setText(self.translated_word)
-    
+        
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Escape:
+            self.hide()
+        else:
+            super().keyPressEvent(event)
     def closeEvent(self, event):
         self.hide()
         event.ignore()

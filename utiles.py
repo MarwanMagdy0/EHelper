@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QLabel, QTextEdit, QListWidget, QLineEdit, QDialog
-from PyQt5.QtCore import QThread, pyqtSignal, QModelIndex
+from PyQt5.QtCore import QThread, pyqtSignal, QModelIndex, Qt
 from googletrans import Translator
 from PyQt5.QtCore import QTimer
 from plyer import notification
