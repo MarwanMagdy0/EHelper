@@ -70,7 +70,7 @@ class TranslateUI(QDialog):
             event.accept()
     
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key_Escape:
+        if event.key() == Qt.Key_Escape and not self.run_alone:
             self.hide()
         else:
             super().keyPressEvent(event)
@@ -79,5 +79,11 @@ class TranslateUI(QDialog):
 if __name__ == "__main__":
     app = QApplication([])
     ui = TranslateUI()
+    clipboard = QApplication.clipboard()
+    text = clipboard.text()
+    ui.english_text.setText(text)
+    ui.arabic_text.setText("")
+    ui.save_button.setEnabled(False)
+    ui.new_key = None
     ui.show()
     app.exec_()
