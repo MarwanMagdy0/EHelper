@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>596</width>
-    <height>595</height>
+    <width>940</width>
+    <height>229</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -82,36 +82,9 @@ QScrollBar:vertical {
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QTextEdit" name="arabic_text">
-       <property name="styleSheet">
-        <string notr="true">font: 20pt &quot;DejaVu Sans&quot;;</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="QLabel" name="translated_label">
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 20pt &quot;DejaVu Sans&quot;;</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QPushButton" name="show_button">
+      <widget class="QPushButton" name="answer1_button">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -125,12 +98,12 @@ QScrollBar:vertical {
         </size>
        </property>
        <property name="text">
-        <string>show</string>
+        <string>ans1</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="check_button">
+      <widget class="QPushButton" name="answer2_button">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -144,7 +117,26 @@ QScrollBar:vertical {
         </size>
        </property>
        <property name="text">
-        <string>check</string>
+        <string>ans2</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="answer3_button">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>50</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>ans3</string>
        </property>
       </widget>
      </item>

@@ -7,6 +7,7 @@ from PyQt5.uic import loadUi
 import requests
 import json
 import os
+import random
 
 PATH = os.path.dirname(os.path.realpath(__file__)) + "/"
 
@@ -68,7 +69,19 @@ def notify():
         timeout=1
     )
 
+def get_different_values(end, not_included, k):
+    if end < k:
+        return [0 for _ in range(k)]
+
+    values = random.sample(range(end + 1), k)
+    if not_included in values:
+        print("in")
+        values = get_different_values(end, not_included, k)
+
+    return values
+
 if __name__ == "__main__":
     # print(json_file.read_data())
-    print(translate_to_arabic("Hello, how are you?"))
-    notify()
+    # print(translate_to_arabic("Hello, how are you?"))
+    # notify()
+    print(get_different_values(5, 0, 5))
