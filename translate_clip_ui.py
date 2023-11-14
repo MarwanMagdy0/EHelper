@@ -31,6 +31,8 @@ class TranslateUI(QDialog):
         self.run_alone = True
     
     def translate_word_method(self):
+        if self.english_text.toPlainText() == "":
+            return
         self.save_button.setEnabled(False)
         self.translate_button.setEnabled(False)
         self.translator_thread.text_to_translate = self.english_text.toPlainText()
@@ -40,6 +42,7 @@ class TranslateUI(QDialog):
         self.arabic_text.setText(text)
         self.save_button.setEnabled(True)
         self.translate_button.setEnabled(True)
+
     def save_and_exit_method(self):
         if self.arabic_text.toPlainText().strip() == "" or self.arabic_text.toPlainText().strip()==" ":
             return
@@ -82,6 +85,7 @@ if __name__ == "__main__":
     clipboard = QApplication.clipboard()
     text = clipboard.text()
     ui.english_text.setText(text)
+    ui.translate_word_method()
     ui.arabic_text.setText("")
     ui.save_button.setEnabled(False)
     ui.new_key = None

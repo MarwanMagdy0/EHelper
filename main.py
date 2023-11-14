@@ -7,9 +7,6 @@ import pystray
 TIMER = 20 * 60000 # min
 
 class TrayThread(QThread):
-    """
-    This class is to open the second python file and get the internet output from it
-    """
     def __init__(self, ui):
         super().__init__()
         self.ui = ui
