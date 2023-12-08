@@ -4,10 +4,11 @@ from googletrans import Translator
 from PyQt5.QtCore import QTimer
 from plyer import notification
 from PyQt5.uic import loadUi
+from gtts import gTTS
 import requests
+import random
 import json
 import os
-import random
 
 PATH = os.path.dirname(os.path.realpath(__file__)) + "/"
 
@@ -69,6 +70,7 @@ def notify():
         timeout=1
     )
 
+
 def get_different_values(end, not_included, k):
     if end < k:
         return [0 for _ in range(k)]
@@ -80,8 +82,16 @@ def get_different_values(end, not_included, k):
 
     return values
 
+
+def play_audio(text):
+    audio = gTTS(text=text, lang="en", slow=True)
+    audio.save("temp.mp3")
+    os.system("mpg123 temp.mp3")
+    os.remove("temp.mp3")
+
 if __name__ == "__main__":
     # print(json_file.read_data())
     # print(translate_to_arabic("Hello, how are you?"))
     # notify()
-    print(get_different_values(5, 0, 5))
+    # print(get_different_values(5, 0, 5))
+    play_audio("hello world!")

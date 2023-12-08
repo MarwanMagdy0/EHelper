@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>940</width>
-    <height>229</height>
+    <width>948</width>
+    <height>222</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,74 +15,131 @@
   </property>
   <property name="styleSheet">
    <string notr="true">* {
-	background-color: #1e1e1e;
+	font: 63 20pt &quot;DejaVu Sans Mono&quot;;
+	background-color: #17181d;
 	color: #ffffff;
 }
+
+QTextEdit {
+background-color: #292c35;
+border: 1px solid #292c35;
+border-radius: 5px;
+}
+
 QPushButton {
 	font: 63 20pt &quot;DejaVu Sans Mono&quot;;
-	background-color: #9a9ef9;
-	border: 1px solid #9a9ef9;
-	border-radius: 20px;
-	color: #FFFFFF;
+	background-color: #e5e5e5;
+	border: 1px solid #e5e5e5;
+	border-radius: 5px;
+	color: #17181d;
 }
 QPushButton:hover {
-    border-radius:20px;
-	border: 1px solid #7070d0;
-	background-color: #7070d0;
-    color: white;
+    border-radius:5px;
+	border: 1px solid #a0a0a0;
+	background-color: #a0a0a0;
+    color: 17181d;
 }
 
 QPushButton:disabled {
+	border-radius:5px;
+	border: 1px solid gray;
     background-color: gray;
-    color: white;
+    color: 17181d;
 }
 
 QPushButton:pressed {
-    
-	background-color: rgb(85, 0, 255);
-    color: white;
+    border-radius:5px;
+	border: 1px solid #808080;
+	background-color: #808080;
+    color: 17181d;
 }
-QHeaderView::section {
- background-color: #303030;
-border:none;
- }
-
-QScrollBar:vertical {
-        background-color: #333333;
-        width: 10px;
-    }
-    QScrollBar::handle:vertical {
-        background-color: #555555;
-        min-height: 20px;
-    }
-    QScrollBar::handle:vertical:hover {
-        background-color: #777777;
-    }
-    QScrollBar::add-line:vertical,
-    QScrollBar::sub-line:vertical {
-        background: none;
-    }
-    QScrollBar::add-page:vertical,
-    QScrollBar::sub-page:vertical {
-        background: none;
-    }</string>
+</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="english_word">
-     <property name="styleSheet">
-      <string notr="true">font: 20pt &quot;DejaVu Sans&quot;;</string>
-     </property>
-     <property name="text">
-      <string>word</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="english_word">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>word</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Total</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>True </string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="total_label">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="true_label">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="play_word_audio">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>data/volume.png</normaloff>data/volume.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="answer1_button">
        <property name="sizePolicy">

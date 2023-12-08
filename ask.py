@@ -3,14 +3,18 @@ class AskUI(QDialog):
     answer1_button   : QPushButton
     answer2_button   : QPushButton
     answer3_button   : QPushButton
+    play_word_audio  : QPushButton
     english_word     : QLabel
+    total_label      : QLabel
+    true_label       : QLabel
     def __init__(self):
         super().__init__()
         loadUi(PATH + "ui/ask.ui", self)
         self.answer1_button.clicked.connect(lambda: self.check_answer("button1"))
         self.answer2_button.clicked.connect(lambda: self.check_answer("button2"))
         self.answer3_button.clicked.connect(lambda: self.check_answer("button3"))
-        self.translated_word = None
+        self.play_word_audio.clicked.connect(lambda: play_audio(self.english_word.text()))
+        self.arabic_word = None
         self.translated_key  = None
         self.buttons_array = [self.answer1_button, self.answer2_button, self.answer3_button]
         self.get_word()
@@ -22,7 +26,7 @@ class AskUI(QDialog):
         
         for key in reversed(data.keys()):
             if not data[key]["word-displayed"] and not data[key]["stop-asking"]:
-                self.translated_word = data[key]["arabic"]
+                self.arabic_word = data[key]["arabic"]
                 self.translated_key = key
                 english = data[key]["english"]
                 self.english_word.setText(english)
@@ -32,7 +36,13 @@ class AskUI(QDialog):
                 random.shuffle(self.buttons_array)
                 self.buttons_array[0].setText(wrong_word1)
                 self.buttons_array[1].setText(wrong_word2)
-                self.buttons_array[2].setText(self.translated_word)
+                self.buttons_array[2].setText(self.arabic_word)
+                if data[key].get("total") is None:
+                    data[key]["total"] = 0
+                    data[key]["true"]  = 0
+                    json_file.save_data(data)
+                self.total_label.setText(str(data[key]["total"]))
+                self.true_label .setText(str(data[key]["true"] ))
                 break
         else:
             for key in data.keys():
@@ -49,11 +59,18 @@ class AskUI(QDialog):
         elif button_selected == "button3":
             button = self.answer3_button
         
-        if button.text() == self.translated_word:
-            data = json_file.read_data()
+        data = json_file.read_data()
+
+        if button.text() == self.arabic_word:
             data[self.translated_key]["word-displayed"] = True
-            json_file.save_data(data)
+            data[self.translated_key]["true"]  +=1
             self.hide()
+        else:
+            button.setEnabled(False)
+
+        data[self.translated_key]["total"]  +=1
+        self.total_label.setText(str(data[self.translated_key]["total"]))
+        json_file.save_data(data)
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:

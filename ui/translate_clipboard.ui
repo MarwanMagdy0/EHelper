@@ -15,32 +15,42 @@
   </property>
   <property name="styleSheet">
    <string notr="true">* {
-	background-color: #1e1e1e;
+	background-color: #17181d;
 	color: #ffffff;
 }
+
+QTextEdit {
+background-color: #292c35;
+border: 1px solid #292c35;
+border-radius: 5px;
+}
+
 QPushButton {
 	font: 63 20pt &quot;DejaVu Sans Mono&quot;;
-	background-color: #9a9ef9;
-	border: 1px solid #9a9ef9;
-	border-radius: 20px;
-	color: #FFFFFF;
+	background-color: #e5e5e5;
+	border: 1px solid #e5e5e5;
+	border-radius: 5px;
+	color: #17181d;
 }
 QPushButton:hover {
-    border-radius:20px;
-	border: 1px solid #7070d0;
-	background-color: #7070d0;
-    color: white;
+    border-radius:5px;
+	border: 1px solid #a0a0a0;
+	background-color: #a0a0a0;
+    color: 17181d;
 }
 
 QPushButton:disabled {
+	border-radius:5px;
+	border: 1px solid gray;
     background-color: gray;
-    color: white;
+    color: 17181d;
 }
 
 QPushButton:pressed {
-    
-	background-color: rgb(85, 0, 255);
-    color: white;
+    border-radius:5px;
+	border: 1px solid #808080;
+	background-color: #808080;
+    color: 17181d;
 }
 QHeaderView::section {
  background-color: #303030;
@@ -106,6 +116,9 @@ QScrollBar:vertical {
      </item>
      <item>
       <widget class="QPushButton" name="save_button">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="minimumSize">
         <size>
          <width>0</width>
