@@ -121,6 +121,9 @@ class MainUI(QMainWindow):
         self.translate_window.show()
     
     def ask_question(self):
+        self.ask_ui.answer1_button.setEnabled(True)
+        self.ask_ui.answer2_button.setEnabled(True)
+        self.ask_ui.answer3_button.setEnabled(True)
         done = self.ask_ui.get_word()
         if done:
             self.ask_ui.show()
