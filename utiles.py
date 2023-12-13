@@ -56,10 +56,10 @@ def is_connected_to_internet():
 
 
 def translate_to_arabic(text):
-    if is_connected_to_internet():
-        translation = translator.translate(text, src='en', dest='ar')
-        return translation.text
-    return ""
+    if not is_connected_to_internet():
+        return ""
+    translation = translator.translate(text, src='en', dest='ar')
+    return translation.text
 
 
 def notify():
@@ -77,17 +77,19 @@ def get_different_values(end, not_included, k):
 
     values = random.sample(range(end + 1), k)
     if not_included in values:
-        print("in")
         values = get_different_values(end, not_included, k)
 
     return values
 
 
 def play_audio(text):
+    if not is_connected_to_internet():
+        return
     audio = gTTS(text=text, lang="en", slow=True)
     audio.save("temp.mp3")
     os.system("mpg123 temp.mp3")
     os.remove("temp.mp3")
+
 
 if __name__ == "__main__":
     # print(json_file.read_data())

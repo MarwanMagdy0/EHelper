@@ -20,12 +20,6 @@
 	color: #ffffff;
 }
 
-QTextEdit {
-background-color: #292c35;
-border: 1px solid #292c35;
-border-radius: 5px;
-}
-
 QPushButton {
 	font: 63 20pt &quot;DejaVu Sans Mono&quot;;
 	background-color: #e5e5e5;

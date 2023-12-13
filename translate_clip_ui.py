@@ -7,15 +7,14 @@ class TranslatorThread(QThread):
         self.text_to_translate = None
     def run(self):
         if self.text_to_translate:
-            print(self.text_to_translate)
             arabic = translate_to_arabic(self.text_to_translate)
-            print(arabic)
             self.text_is_translated.emit(arabic)
         self.text_to_translate = None
 
 class TranslateUI(QDialog):
-    save_button: QPushButton
-    translate_button: QPushButton
+    save_button      : QPushButton
+    translate_button : QPushButton
+    play_word_audio  : QPushButton
     english_text: QTextEdit
     arabic_text : QTextEdit
     new_word_is_added = pyqtSignal()
@@ -25,6 +24,7 @@ class TranslateUI(QDialog):
         self.save_button.setEnabled(False)
         self.save_button.clicked.connect(self.save_and_exit_method)
         self.translate_button.clicked.connect(self.translate_word_method)
+        self.play_word_audio.clicked.connect(lambda: play_audio(self.english_text.toPlainText()))
         self.new_key = None
         self.translator_thread = TranslatorThread()
         self.translator_thread.text_is_translated.connect(self.update_arabic)
@@ -39,9 +39,11 @@ class TranslateUI(QDialog):
         self.translator_thread.start()
     
     def update_arabic(self, text):
+        self.translate_button.setEnabled(True)
+        if text is "":
+            return
         self.arabic_text.setText(text)
         self.save_button.setEnabled(True)
-        self.translate_button.setEnabled(True)
 
     def save_and_exit_method(self):
         if self.arabic_text.toPlainText().strip() == "" or self.arabic_text.toPlainText().strip()==" ":
@@ -85,9 +87,8 @@ if __name__ == "__main__":
     clipboard = QApplication.clipboard()
     text = clipboard.text()
     ui.english_text.setText(text)
-    ui.translate_word_method()
-    ui.arabic_text.setText("")
     ui.save_button.setEnabled(False)
+    ui.translate_word_method()
     ui.new_key = None
     ui.show()
     app.exec_()

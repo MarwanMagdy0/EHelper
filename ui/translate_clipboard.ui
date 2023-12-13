@@ -115,6 +115,23 @@ QScrollBar:vertical {
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="play_word_audio">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>data/volume.png</normaloff>data/volume.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="save_button">
        <property name="enabled">
         <bool>true</bool>
