@@ -3,7 +3,7 @@ from translate_clip_ui import *
 from ask import *
 from utiles import *
 import pystray
-
+# TODO: solve click on item when search mode, opens another word
 TIMER = 20 * 60000 # min
 
 class TrayThread(QThread):
