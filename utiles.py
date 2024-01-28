@@ -1,7 +1,7 @@
-from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QLabel, QTextEdit, QListWidget, QLineEdit, QDialog
+from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QLabel, QTextEdit, QListWidget, QLineEdit, QDialog, QScrollArea, QCheckBox
 from PyQt5.QtCore import QThread, pyqtSignal, QModelIndex, Qt
 from googletrans import Translator
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QTimer, pyqtSignal
 from plyer import notification
 from PyQt5.uic import loadUi
 from gtts import gTTS
@@ -42,6 +42,12 @@ class HandleJsonFiles:
     def keys(self):
         data = self.read_data()
         return data.keys()
+
+class CustomCheckBox(QCheckBox):
+    checked = pyqtSignal(str)
+    def __init__(self, text, parent, id_):
+        super().__init__(text, parent)
+        self.clicked.connect(lambda : self.checked.emit(id_))
   
 json_file = HandleJsonFiles(PATH + "words.json")
 translator = Translator()

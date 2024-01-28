@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>589</width>
+    <height>693</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">* {
+	background-color: #17181d;
+	color: #ffffff;
+}
+
+QTextEdit {
+background-color: #292c35;
+border: 1px solid #292c35;
+border-radius: 5px;
+}
+
+QCheckBox {
+	font: 63 20pt &quot;DejaVu Sans Mono&quot;;
+	background-color: #e5e5e5;
+	border: 1px solid #e5e5e5;
+	border-radius: 5px;
+	color: #17181d;
+}
+QPushButton:hover {
+    border-radius:5px;
+	border: 1px solid #a0a0a0;
+	background-color: #a0a0a0;
+    color: 17181d;
+}
+
+QPushButton:disabled {
+	border-radius:5px;
+	border: 1px solid gray;
+    background-color: gray;
+    color: 17181d;
+}
+
+QPushButton:pressed {
+    border-radius:5px;
+	border: 1px solid #808080;
+	background-color: #808080;
+    color: 17181d;
+}
+QHeaderView::section {
+ background-color: #303030;
+border:none;
+ }
+
+QScrollBar:vertical {
+        background-color: #333333;
+        width: 10px;
+    }
+    QScrollBar::handle:vertical {
+        background-color: #555555;
+        min-height: 20px;
+    }
+    QScrollBar::handle:vertical:hover {
+        background-color: #777777;
+    }
+    QScrollBar::add-line:vertical,
+    QScrollBar::sub-line:vertical {
+        background: none;
+    }
+    QScrollBar::add-page:vertical,
+    QScrollBar::sub-page:vertical {
+        background: none;
+    }</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignHCenter|Qt::AlignTop</set>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>569</width>
+        <height>673</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2"/>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

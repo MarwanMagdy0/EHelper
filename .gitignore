@@ -2,3 +2,5 @@ words.json
 __pycache__/
 testing.py
 temp.mp3
+backup-words-28-1-2024.json
+.vscode/
