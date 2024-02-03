@@ -1,5 +1,6 @@
 from PIL import Image
 from translate_clip_ui import *
+from choose_words import *
 from ask import *
 from utiles import *
 import pystray
@@ -12,6 +13,7 @@ class TrayThread(QThread):
         super().__init__()
         self.ui = ui
         self.translate_clip_obj = self.ui.translate_window
+        self.choose_word_obj = self.ui.choose_word_ui
 
     def on_left_click(self):
         """
@@ -29,6 +31,9 @@ class TrayThread(QThread):
         self.translate_clip_obj.new_key = None
         self.translate_clip_obj.show()
         self.translate_clip_obj.activateWindow()
+    
+    def choose_word(self):
+        self.choose_word_obj.show()
 
     def on_right_click(self):
         """
@@ -43,6 +48,7 @@ class TrayThread(QThread):
         # Create a menu item with the left-click event handler
         menu = (pystray.MenuItem("show", self.on_left_click, default = True),
                 pystray.MenuItem("trans-clip", self.translate_clip),
+                pystray.MenuItem("choose-word", self.choose_word),
                 pystray.MenuItem("exit", self.on_right_click))
 
         # Create the tray icon with the menu
@@ -61,11 +67,12 @@ class MainUI(QMainWindow):
         loadUi(PATH + "ui/main.ui", self)
         self.add_button.clicked.connect(self.add_button_clicked)
         self.search_line.textChanged.connect(self.search_line_method)
+        self.ask_ui = AskUI()
+        self.choose_word_ui = ChooseWordsUI()
         self.init_translate_window()
         self.init_list_widget()
         self.init_tray_thread()
         self.init_timers()
-        self.ask_ui = AskUI()
     
     def search_line_method(self):
         self.listWidget_arabic. clear()
