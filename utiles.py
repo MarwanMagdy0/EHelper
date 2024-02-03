@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QLabel, QTextEdit, QListWidget, QLineEdit, QDialog, QScrollArea, QCheckBox
+from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QLabel, QTextEdit, QListWidget, QLineEdit, QDialog, QScrollArea, QCheckBox, QPlainTextEdit
 from PyQt5.QtCore import QThread, pyqtSignal, QModelIndex, Qt
 from googletrans import Translator
 from PyQt5.QtCore import QTimer, pyqtSignal
@@ -96,6 +96,9 @@ def play_audio(text):
     os.system("mpg123 temp.mp3")
     os.remove("temp.mp3")
 
+chars = "abcdefghijklmnopqrstuvwxyz"
+with open(PATH + "dictionary_alpha_arrays.json", "r") as f:
+    def_data = json.load(f)
 
 if __name__ == "__main__":
     # print(json_file.read_data())

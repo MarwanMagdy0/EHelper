@@ -27,7 +27,7 @@ class TrayThread(QThread):
         text = clipboard.text()
         self.translate_clip_obj.english_text.setText(text)
         self.translate_clip_obj.arabic_text.setText("")
-        self.translate_clip_obj.save_button.setEnabled(False)
+        # self.translate_clip_obj.save_button.setEnabled(False)
         self.translate_clip_obj.new_key = None
         self.translate_clip_obj.show()
         self.translate_clip_obj.activateWindow()
@@ -140,8 +140,10 @@ class MainUI(QMainWindow):
         word_data = data[str(words_length - row_clicked_index - 1)]
         english = word_data["english"]
         arabic  = word_data["arabic"]
+        def_text  = word_data["def"]
         self.translate_window.english_text.setText(english)
         self.translate_window.arabic_text.setText(arabic)
+        self.translate_window.def_text.setText(def_text)
         self.translate_window.save_button.setEnabled(True)
         self.translate_window.show()
     

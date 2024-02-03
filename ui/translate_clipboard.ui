@@ -100,7 +100,7 @@ QScrollBar:vertical {
     </layout>
    </item>
    <item>
-    <widget class="QTextEdit" name="textEdit"/>
+    <widget class="QTextEdit" name="def_text"/>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">

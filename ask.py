@@ -4,9 +4,13 @@ class AskUI(QDialog):
     answer2_button   : QPushButton
     answer3_button   : QPushButton
     play_word_audio  : QPushButton
+    answer1_button   : QPushButton
+    answer2_button   : QPushButton
+    answer3_button   : QPushButton
     english_word     : QLabel
     total_label      : QLabel
     true_label       : QLabel
+    define_text      : QPlainTextEdit
     def __init__(self):
         super().__init__()
         loadUi(PATH + "ui/ask.ui", self)
@@ -43,6 +47,7 @@ class AskUI(QDialog):
                     json_file.save_data(data)
                 self.total_label.setText(str(data[key]["total"]))
                 self.true_label .setText(str(data[key]["true"] ))
+                self.define_text.setText(str(data[key]["def"] ))
                 break
         else:
             for key in data.keys():
