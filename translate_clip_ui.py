@@ -33,23 +33,25 @@ class TranslateUI(QDialog):
         self.run_alone = True
     
     def define_method(self):
+        if self.english_text.toPlainText().strip() == "":
+            return
         first_letter_index = chars.index(self.english_text.toPlainText().strip().lower()[0])
         self.def_text.setText(def_data[first_letter_index].get(self.english_text.toPlainText().lower(), ""))
         
     def translate_word_method(self):
         if self.english_text.toPlainText() == "":
             return
-        self.save_button.setEnabled(False)
+        # self.save_button.setEnabled(False)
         # self.translate_button.setEnabled(False)
         self.translator_thread.text_to_translate = self.english_text.toPlainText()
         self.translator_thread.start()
     
     def update_arabic(self, text):
-        self.translate_button.setEnabled(True)
+        # self.translate_button.setEnabled(True)
         if text == "":
             return
         self.arabic_text.setText(text)
-        self.save_button.setEnabled(True)
+        # self.save_button.setEnabled(True)
 
     def save_and_exit_method(self):
         if self.arabic_text.toPlainText().strip() == "" or self.arabic_text.toPlainText().strip() == "":

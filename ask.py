@@ -21,7 +21,6 @@ class AskUI(QDialog):
         self.arabic_word = None
         self.translated_key  = None
         self.buttons_array = [self.answer1_button, self.answer2_button, self.answer3_button]
-        self.get_word()
 
     def get_word(self):
         data = json_file.read_data()
@@ -53,7 +52,7 @@ class AskUI(QDialog):
             for key in data.keys():
                 data[key]["word-displayed"] = False
             json_file.save_data(data)
-            self.get_word() # it will enter here only one time
+            # self.get_word() # it will enter here only one time
         return True
     
     def check_answer(self, button_selected):

@@ -5,7 +5,7 @@ from ask import *
 from utiles import *
 import pystray
 # TODO: solve click on item when search mode, opens another word
-TIMER = 20 * 60000 # min
+TIMER = 10 * 60000 # min
 
 class TrayThread(QThread):
     ui: QMainWindow
@@ -151,6 +151,7 @@ class MainUI(QMainWindow):
         self.ask_ui.answer1_button.setEnabled(True)
         self.ask_ui.answer2_button.setEnabled(True)
         self.ask_ui.answer3_button.setEnabled(True)
+        self.ask_ui.setFocus()
         done = self.ask_ui.get_word()
         if done:
             self.ask_ui.show()
